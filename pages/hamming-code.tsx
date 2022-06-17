@@ -15,24 +15,11 @@ const HammingCode = () => {
   const [encriptedCode, setEncriptedCode] = useState("");
   const [show, setShow] = useState(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setValue(value);
-  };
-
   const checkParity = (parityBit: number) => {
     if (parityBit % 2 === 0) {
-      if (selectedOption.value === "even") {
-        return 0;
-      } else {
-        return 1;
-      }
+      return (selectedOption.value === "even") ? 1 : 0
     } else {
-      if (selectedOption.value === "odd") {
-        return 1;
-      } else {
-        return 0;
-      }
+      return (selectedOption.value === "odd") ? 0 : 1
     }
   };
 
@@ -92,7 +79,7 @@ const HammingCode = () => {
         Hamming worked on the weekends, but he grew dissatisfied with having to
         start his programs over when flaws were found. &quot;And so I said, Damn it,
         if the computer can identify a mistake, why can&apos;`t it locate the error&apos;`s
-        position and rectify it?&quot; stated Hamming in a recorded interview. [3] He
+        position and rectify it?&quot; stated Hamming in a recorded interview. He
         continued to work on the issue of error-correction over the following
         few years, creating an ever-larger variety of powerful algorithms. He
         introduced what is now referred to as Hamming code in 1950, and it is
@@ -112,7 +99,9 @@ const HammingCode = () => {
                 maxLength={4}
                 className="font-semibold text-xl border px-5 py-2 rounded-lg tracking-widest w-72"
                 value={value}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
               />
               <Listbox
                 as="div"
